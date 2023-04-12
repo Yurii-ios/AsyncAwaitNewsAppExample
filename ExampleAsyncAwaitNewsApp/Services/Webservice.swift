@@ -17,13 +17,27 @@ class Webservice {
         return newsSourceResponse?.sources ?? []
     }
     
-    func fetchNews(by sourceId: String, url: URL?, completion: @escaping (Result<[NewsArticle], NetworkError>) -> Void) {
+    func fetchNewsAsync(sourceId: String, url: URL?) async throws -> [NewsArticle] {
+        
+        try await withCheckedThrowingContinuation { continuation in
+            fetchNews(sourceId: sourceId, url: url) { result in
+                switch result {
+                    case .success(let newsArticles):
+                        continuation.resume(returning: newsArticles)
+                    case .failure(let error):
+                        continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    
+    private func fetchNews(sourceId: String, url: URL?, completion: @escaping (Result<[NewsArticle], NetworkError>) -> Void) {
         
         guard let url = url else {
             completion(.failure(.badUrl))
             return
         }
-        
+            
         URLSession.shared.dataTask(with: url) { data, _, error in
             
             guard let data = data, error == nil else {
@@ -37,5 +51,4 @@ class Webservice {
         }.resume()
         
     }
-    
 }

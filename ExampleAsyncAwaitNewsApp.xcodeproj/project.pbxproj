@@ -19,6 +19,7 @@
 		F1F2C58C29E64EEE00CD5FB5 /* NewsSourceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F2C58B29E64EEE00CD5FB5 /* NewsSourceListViewModel.swift */; };
 		F1F2C58F29E6501700CD5FB5 /* NewsSourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F2C58E29E6501700CD5FB5 /* NewsSourceCell.swift */; };
 		F1F2C59129E6504D00CD5FB5 /* NewsListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F2C59029E6504D00CD5FB5 /* NewsListScreen.swift */; };
+		F1F2C59329E6608000CD5FB5 /* NewsArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F2C59229E6608000CD5FB5 /* NewsArticleCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		F1F2C58B29E64EEE00CD5FB5 /* NewsSourceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSourceListViewModel.swift; sourceTree = "<group>"; };
 		F1F2C58E29E6501700CD5FB5 /* NewsSourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSourceCell.swift; sourceTree = "<group>"; };
 		F1F2C59029E6504D00CD5FB5 /* NewsListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListScreen.swift; sourceTree = "<group>"; };
+		F1F2C59229E6608000CD5FB5 /* NewsArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsArticleCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			children = (
 				F1F2C57129E644A900CD5FB5 /* ContentView.swift */,
 				F1F2C58E29E6501700CD5FB5 /* NewsSourceCell.swift */,
+				F1F2C59229E6608000CD5FB5 /* NewsArticleCell.swift */,
 				F1F2C59029E6504D00CD5FB5 /* NewsListScreen.swift */,
 			);
 			path = Views;
@@ -204,6 +207,7 @@
 				F1F2C57229E644A900CD5FB5 /* ContentView.swift in Sources */,
 				F1F2C58129E64DCF00CD5FB5 /* NewsSource.swift in Sources */,
 				F1F2C57F29E64D9E00CD5FB5 /* NewsArticle.swift in Sources */,
+				F1F2C59329E6608000CD5FB5 /* NewsArticleCell.swift in Sources */,
 				F1F2C58429E64E2D00CD5FB5 /* Webservice.swift in Sources */,
 				F1F2C58F29E6501700CD5FB5 /* NewsSourceCell.swift in Sources */,
 				F1F2C57029E644A900CD5FB5 /* ExampleAsyncAwaitNewsAppApp.swift in Sources */,
