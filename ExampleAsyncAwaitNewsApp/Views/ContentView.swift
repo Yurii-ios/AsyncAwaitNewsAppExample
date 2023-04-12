@@ -4,24 +4,24 @@ struct ContentView: View {
     @StateObject private var newsSourceListViewModel = NewsSourceListViewModel()
     
     var body: some View {
-        
         NavigationView {
-        
-        List(newsSourceListViewModel.newsSources, id: \.id) { newsSource in
-            NavigationLink(destination: NewsListScreen(newsSource: newsSource)) {
-                NewsSourceCell(newsSource: newsSource)
+            List(newsSourceListViewModel.newsSources, id: \.id) { newsSource in
+                NavigationLink(destination: NewsListScreen(newsSource: newsSource)) {
+                    NewsSourceCell(newsSource: newsSource)
+                }
             }
-        }
-        .listStyle(.plain)
-        .task {
-           await newsSourceListViewModel.getSources()
-        }
-        .navigationTitle("News Sources")
-        .navigationBarItems(trailing: Button(action: {
-            // refresh the news
-        }, label: {
-            Image(systemName: "arrow.clockwise.circle")
-        }))
+            .listStyle(.plain)
+            .task {
+                await newsSourceListViewModel.getSources()
+            }
+            .navigationTitle("News Sources")
+            .navigationBarItems(trailing: Button(action: {
+                Task {
+                    await newsSourceListViewModel.getSources()
+                }
+            }, label: {
+                Image(systemName: "arrow.clockwise.circle")
+            }))
         }
     }
 }
