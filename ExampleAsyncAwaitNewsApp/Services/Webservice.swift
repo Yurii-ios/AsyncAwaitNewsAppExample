@@ -8,25 +8,13 @@ enum NetworkError: Error {
 
 class Webservice {
     
-    func fetchSources(url: URL?, completion: @escaping (Result<[NewsSource], NetworkError>) -> Void) {
+    func fetchSourcesAsync(url: URL?) async throws -> [NewsSource] {
+        guard let url = url else { return [] }
         
-        guard let url = url else {
-            completion(.failure(.badUrl))
-            return
-        }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let newsSourceResponse = try? JSONDecoder().decode(NewsSourceResponse.self, from: data)
         
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            
-            guard let data = data, error == nil else {
-                completion(.failure(.invalidData))
-                return
-            }
-            
-            let newsSourceResponse = try? JSONDecoder().decode(NewsSourceResponse.self, from: data)
-            completion(.success(newsSourceResponse?.sources ?? []))
-            
-        }.resume()
-        
+        return newsSourceResponse?.sources ?? []
     }
     
     func fetchNews(by sourceId: String, url: URL?, completion: @escaping (Result<[NewsArticle], NetworkError>) -> Void) {
@@ -35,7 +23,7 @@ class Webservice {
             completion(.failure(.badUrl))
             return
         }
-            
+        
         URLSession.shared.dataTask(with: url) { data, _, error in
             
             guard let data = data, error == nil else {
